@@ -3,7 +3,38 @@
 
 
 .skills{
-    max-width: 10px;
+    max-width: 96px;
     height: auto;
-    
+    padding: 10px;
 }
+
+.skills-wrapper{
+    padding-top: 30px;
+    display: flex;
+    align-items: center;
+    width: 96px;
+    flex-direction: column;
+
+    
+
+}
+
+.skills-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+.nav-button{
+   padding: 20px;
+   color: #fff;
+}
+
+.nav-button-container {
+    padding-top: 40px;
+}
+
