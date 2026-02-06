@@ -1,11 +1,17 @@
 
 /* Product Manager portfolio overrides & layout */
 
+/* Preloader below navbar so nav and tabs are always visible */
+#preloader {
+    z-index: 1000;
+}
+
 body {
     background-color: #050509;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: #111111;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -35,6 +41,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 140px;
     background: #050509;
     color: #f5f5f7;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .pm-eyebrow {
@@ -156,8 +163,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .pm-hero-avatar {
-    width: 100%;
+    width: 50%;
+    max-width: 50%;
     display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .pm-hero-card-title {
@@ -186,15 +196,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .pm-section-light {
     background: #050509;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .pm-section-muted {
     background: #080810;
+    transition: background-color 0.3s ease;
 }
 
 .pm-section-dark {
     background: #050509;
     color: #f5f5f7;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .pm-section-header {
@@ -441,14 +454,52 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navbar tweaks for dark hero */
 
+/* Navbar always on top so it’s visible even during preloader */
+#mainNav,
+#mainNav.navbar-shrink {
+    z-index: 1050;
+}
+
 #mainNav {
     background-color: #050509;
-    border-bottom: 1px solid #111119;
+    border-bottom: 1px solid #1e1e28;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    min-height: 56px;
+}
+
+#mainNav .navbar-brand.pm-logo {
+    color: #f5f5f7;
+}
+
+/* Dark mode: theme toggle icon white */
+#mainNav .theme-toggle-btn {
+    color: #f5f5f7;
+}
+
+/* Prevent Tailwind .collapse from hiding the navbar menu (visibility: collapse) */
+#navbarResponsive.navbar-collapse.collapse,
+.navbar-collapse.collapse {
+    visibility: visible;
 }
 
 #mainNav .navbar-nav .nav-link {
     font-size: 13px;
     text-transform: none;
+}
+
+/* Hire Me CTA in nav – pill button like reference */
+#mainNav .nav-link.pm-nav-cta {
+    margin-left: 8px;
+    padding: 8px 20px !important;
+    background-color: #f5f5f7;
+    color: #050509 !important;
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+#mainNav .nav-link.pm-nav-cta:hover {
+    background-color: #e8e8ec;
+    color: #050509 !important;
 }
 
 @media (max-width: 991.98px) {
@@ -473,5 +524,294 @@ h1, h2, h3, h4, h5, h6 {
     .pm-case-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* -------------------------------------------------------------------------
+   Light theme: apply when html does NOT have .dark (Tailwind darkMode: 'class')
+   Reference: clean, bright portfolios – pure white, dark text, soft shadows
+   ------------------------------------------------------------------------- */
+
+html:not(.dark) body {
+    background-color: #ffffff;
+    color: #111111;
+}
+
+html:not(.dark) .pm-hero h1,
+html:not(.dark) .pm-hero h2,
+html:not(.dark) .pm-hero h3,
+html:not(.dark) .pm-hero h4,
+html:not(.dark) .pm-hero h5,
+html:not(.dark) .pm-hero h6,
+html:not(.dark) .pm-section-dark h1,
+html:not(.dark) .pm-section-dark h2,
+html:not(.dark) .pm-section-dark h3,
+html:not(.dark) .pm-section-dark h4,
+html:not(.dark) .pm-section-dark h5,
+html:not(.dark) .pm-section-dark h6,
+html:not(.dark) .pm-section-light h1,
+html:not(.dark) .pm-section-light h2,
+html:not(.dark) .pm-section-light h3,
+html:not(.dark) .pm-section-light h4,
+html:not(.dark) .pm-section-light h5,
+html:not(.dark) .pm-section-light h6,
+html:not(.dark) .pm-section-muted h1,
+html:not(.dark) .pm-section-muted h2,
+html:not(.dark) .pm-section-muted h3,
+html:not(.dark) .pm-section-muted h4,
+html:not(.dark) .pm-section-muted h5,
+html:not(.dark) .pm-section-muted h6 {
+    color: #111111;
+}
+
+/* Nav: pure white, subtle bottom border, dark text */
+html:not(.dark) #mainNav {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5ea;
+}
+
+html:not(.dark) #mainNav .navbar-nav .nav-link {
+    color: #111111 !important;
+}
+
+html:not(.dark) #mainNav .pm-logo,
+html:not(.dark) #mainNav .theme-toggle-btn {
+    color: #111111;
+}
+
+html:not(.dark) #mainNav .nav-link.pm-nav-cta {
+    background-color: #111111;
+    color: #ffffff !important;
+}
+
+html:not(.dark) #mainNav .nav-link.pm-nav-cta:hover {
+    background-color: #333333;
+    color: #ffffff !important;
+}
+
+/* Hero: crisp white, strong dark heading and body */
+html:not(.dark) .pm-hero {
+    background-color: #ffffff;
+    color: #111111;
+}
+
+html:not(.dark) .pm-eyebrow {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-hero-subtitle {
+    color: #5b5b68;
+}
+
+/* Availability pill: light green tint, dark green text */
+html:not(.dark) .pm-availability-pill {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+html:not(.dark) .pm-availability-dot {
+    background: #22c55e;
+}
+
+/* CTAs: primary = dark button, secondary = white + dark border (Sign In style) */
+html:not(.dark) .pm-primary-cta {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+}
+
+html:not(.dark) .pm-secondary-cta {
+    background-color: #ffffff !important;
+    border: 1px solid #111111 !important;
+    color: #111111 !important;
+}
+
+html:not(.dark) .pm-hero-metric-number {
+    color: #111111;
+}
+
+html:not(.dark) .pm-hero-metric-label {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-hero-logos {
+    color: #5b5b68;
+    border-top: 1px solid #e5e5ea;
+}
+
+/* Company/product pills: white, light grey border */
+html:not(.dark) .pm-hero-logos-list li {
+    border: 1px solid #e5e5ea;
+    background: #ffffff;
+    color: #111111;
+}
+
+/* Hero card: light in light mode so area around headshot matches page */
+html:not(.dark) .pm-hero-card {
+    background: #ffffff;
+    color: #111111;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+html:not(.dark) .pm-hero-card-media {
+    background: #ffffff;
+}
+
+html:not(.dark) .pm-hero-card-title {
+    color: #111111;
+}
+
+html:not(.dark) .pm-hero-card-copy,
+html:not(.dark) .pm-hero-card-list {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-hero-card-list li {
+    color: #5b5b68;
+}
+
+/* Sections: white and very light grey for subtle rhythm */
+html:not(.dark) .pm-section-light {
+    background-color: #ffffff;
+}
+
+html:not(.dark) .pm-section-muted {
+    background-color: #fafafa;
+}
+
+/* Dark sections (Metrics, Testimonials) use same light bg in light mode */
+html:not(.dark) .pm-section-dark {
+    background-color: #fafafa;
+    color: #111111;
+}
+
+html:not(.dark) .pm-section-copy {
+    color: #5b5b68;
+}
+
+/* About pills: white cards, soft shadow */
+html:not(.dark) .pm-pill {
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+html:not(.dark) .pm-pill ul {
+    color: #5b5b68;
+}
+
+/* Skills: very light grey cards */
+html:not(.dark) .pm-skill-card {
+    background: #f5f5f7;
+}
+
+html:not(.dark) .pm-skill-card ul {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-skill-tag {
+    border: 1px solid #e5e5ea;
+    background: #ffffff;
+    color: #111111;
+}
+
+/* Case study cards: white, soft shadow */
+html:not(.dark) .pm-case-card {
+    background: #ffffff;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+html:not(.dark) .pm-case-media-muted {
+    background: #f5f5f7;
+}
+
+html:not(.dark) .pm-case-placeholder span {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-case-label {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-case-metrics {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-case-body h3 {
+    color: #111111;
+}
+
+/* Experience: light grey block, thin dividers, hover row */
+html:not(.dark) .pm-experience-timeline {
+    background: #f5f5f7;
+}
+
+html:not(.dark) .pm-experience-row + .pm-experience-row {
+    border-top: 1px solid #e5e5ea;
+}
+
+html:not(.dark) .pm-experience-row {
+    transition: background-color 0.2s ease;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+html:not(.dark) .pm-experience-row:hover {
+    background-color: #e5e5ea;
+}
+
+html:not(.dark) .pm-experience-years {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-experience-body h3 {
+    color: #111111;
+}
+
+html:not(.dark) .pm-experience-body p {
+    color: #5b5b68;
+}
+
+/* Testimonials: same light style as rest of page in light mode */
+html:not(.dark) .pm-quote {
+    background: #ffffff;
+    color: #111111;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+html:not(.dark) .pm-quote-attribution {
+    color: #5b5b68;
+}
+
+/* Metrics: same light style in light mode */
+html:not(.dark) .pm-metrics-section {
+    border-top-color: #e5e5ea;
+    border-bottom-color: #e5e5ea;
+}
+
+html:not(.dark) .pm-metric-value {
+    color: #111111;
+}
+
+html:not(.dark) .pm-metric-label {
+    color: #5b5b68;
+}
+
+html:not(.dark) .pm-metric-caption {
+    color: #5b5b68;
+}
+
+/* Contact: white form, subtle definition */
+html:not(.dark) .pm-contact-section {
+    background-color: #ffffff;
+}
+
+html:not(.dark) .pm-contact-section .contact_form {
+    background-color: #ffffff;
+    border: 1px solid #e5e5ea;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+html:not(.dark) .copyrights {
+    background-color: #1f1f1f;
 }
 

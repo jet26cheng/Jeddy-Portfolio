@@ -1,0 +1,5 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme toggle uses dark: variants - class strategy in tailwind.config.js */

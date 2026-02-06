@@ -81,10 +81,14 @@
 	$('.parallaxie').parallaxie();
 	
     // LOADER
-    $(window).load(function() {
-        $("#preloader").on(500).fadeOut();
-        $(".preloader").on(600).fadeOut("slow");
+    $(window).on("load", function() {
+        $("#preloader").delay(500).fadeOut(400);
+        $(".preloader").delay(600).fadeOut("slow");
     });
+    // Fallback: hide preloader after 2s if load never fires (e.g. slow image)
+    setTimeout(function() {
+        $("#preloader").fadeOut(400);
+    }, 2000);
 
 	// Gallery Filter
         var Container = $('.container');
