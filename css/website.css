@@ -15,6 +15,14 @@ h1, h2, h3, h4, h5, h6 {
     color: #111111;
 }
 
+/* Headings on dark backgrounds must be light for visibility */
+.pm-hero h1, .pm-hero h2, .pm-hero h3, .pm-hero h4, .pm-hero h5, .pm-hero h6,
+.pm-section-dark h1, .pm-section-dark h2, .pm-section-dark h3, .pm-section-dark h4, .pm-section-dark h5, .pm-section-dark h6,
+.pm-section-light h1, .pm-section-light h2, .pm-section-light h3, .pm-section-light h4, .pm-section-light h5, .pm-section-light h6,
+.pm-section-muted h1, .pm-section-muted h2, .pm-section-muted h3, .pm-section-muted h4, .pm-section-muted h5, .pm-section-muted h6 {
+    color: #f5f5f7;
+}
+
 .pm-logo {
     font-weight: 600;
     font-size: 16px;
