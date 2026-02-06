@@ -6,12 +6,18 @@
     z-index: 1000;
 }
 
+/* Default = light theme (readable first paint; dark theme applied via html.dark below) */
 body {
-    background-color: #050509;
+    background-color: #ffffff;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     color: #111111;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark body {
+    background-color: #050509;
+    color: #f5f5f7;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -21,11 +27,16 @@ h1, h2, h3, h4, h5, h6 {
     color: #111111;
 }
 
-/* Headings on dark backgrounds must be light for visibility */
-.pm-hero h1, .pm-hero h2, .pm-hero h3, .pm-hero h4, .pm-hero h5, .pm-hero h6,
-.pm-section-dark h1, .pm-section-dark h2, .pm-section-dark h3, .pm-section-dark h4, .pm-section-dark h5, .pm-section-dark h6,
-.pm-section-light h1, .pm-section-light h2, .pm-section-light h3, .pm-section-light h4, .pm-section-light h5, .pm-section-light h6,
-.pm-section-muted h1, .pm-section-muted h2, .pm-section-muted h3, .pm-section-muted h4, .pm-section-muted h5, .pm-section-muted h6 {
+/* Dark mode: all headings light by default (covers headings outside .pm-hero / section classes) */
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+    color: #f5f5f7;
+}
+
+/* Section-specific overrides keep same color; explicit for clarity and any future divergence */
+html.dark .pm-hero h1, html.dark .pm-hero h2, html.dark .pm-hero h3, html.dark .pm-hero h4, html.dark .pm-hero h5, html.dark .pm-hero h6,
+html.dark .pm-section-dark h1, html.dark .pm-section-dark h2, html.dark .pm-section-dark h3, html.dark .pm-section-dark h4, html.dark .pm-section-dark h5, html.dark .pm-section-dark h6,
+html.dark .pm-section-light h1, html.dark .pm-section-light h2, html.dark .pm-section-light h3, html.dark .pm-section-light h4, html.dark .pm-section-light h5, html.dark .pm-section-light h6,
+html.dark .pm-section-muted h1, html.dark .pm-section-muted h2, html.dark .pm-section-muted h3, html.dark .pm-section-muted h4, html.dark .pm-section-muted h5, html.dark .pm-section-muted h6 {
     color: #f5f5f7;
 }
 
@@ -476,10 +487,19 @@ h1, h2, h3, h4, h5, h6 {
     color: #f5f5f7;
 }
 
-/* Prevent Tailwind .collapse from hiding the navbar menu (visibility: collapse) */
-#navbarResponsive.navbar-collapse.collapse,
-.navbar-collapse.collapse {
-    visibility: visible;
+/* Override Tailwind .collapse (visibility: collapse) so the navbar menu is visible.
+   Tailwind's .collapse hides any element with that class; Bootstrap uses .collapse for the nav menu. */
+/* Desktop (lg and up): always show the nav menu */
+@media (min-width: 992px) {
+    #mainNav .navbar-collapse.collapse,
+    .navbar-expand-lg .navbar-collapse.collapse {
+        visibility: visible;
+    }
+}
+/* Mobile: show when Bootstrap adds .show (menu toggled open) */
+#navbarResponsive.navbar-collapse.collapse.show,
+.navbar-collapse.collapse.show {
+    visibility: visible !important;
 }
 
 #mainNav .navbar-nav .nav-link {

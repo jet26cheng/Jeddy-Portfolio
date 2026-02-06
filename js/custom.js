@@ -81,7 +81,10 @@
 	$('.parallaxie').parallaxie();
 	
     // LOADER: single source of truth – fade out after load; fallback only if load never fires
+    var preloaderHidden = false;
     function hidePreloader() {
+        if (preloaderHidden) return;
+        preloaderHidden = true;
         $("#preloader").stop(true, true).fadeOut(400);
         $(".preloader").stop(true, true).fadeOut(400);
     }
