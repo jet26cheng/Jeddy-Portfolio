@@ -80,7 +80,8 @@
     $('.heading').height( $(window).height() );
 	$('.parallaxie').parallaxie();
 	
-    // LOADER: single source of truth – fade out after load; fallback only if load never fires
+    // LOADER: single source of truth – fade out after load; fallback only if load never fires.
+    // If script runs after load (e.g. at end of body, load already fired), run handler immediately.
     var preloaderHidden = false;
     function hidePreloader() {
         if (preloaderHidden) return;
@@ -92,13 +93,18 @@
         preloaderFallback = null;
         hidePreloader();
     }, 2500);
-    $(window).on("load", function() {
+    function onLoad() {
         if (preloaderFallback) {
             clearTimeout(preloaderFallback);
             preloaderFallback = null;
         }
         setTimeout(hidePreloader, 500);
-    });
+    }
+    if (document.readyState === 'complete') {
+        onLoad();
+    } else {
+        $(window).on("load", onLoad);
+    }
 
 	// Gallery Filter
         var Container = $('.container');
