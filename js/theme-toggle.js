@@ -1,22 +1,10 @@
 (function () {
   var THEME_KEY = 'portfolio-theme';
 
-  function getStoredTheme() {
-    try {
-      return localStorage.getItem(THEME_KEY);
-    } catch (e) {
-      return null;
-    }
-  }
-
   function setStoredTheme(value) {
     try {
       localStorage.setItem(THEME_KEY, value);
     } catch (e) {}
-  }
-
-  function prefersDark() {
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   function applyTheme(isDark) {
@@ -28,18 +16,6 @@
     }
   }
 
-  function initTheme() {
-    var stored = getStoredTheme();
-    var isDark;
-    if (stored === 'dark' || stored === 'light') {
-      isDark = stored === 'dark';
-    } else {
-      isDark = prefersDark();
-      setStoredTheme(isDark ? 'dark' : 'light');
-    }
-    applyTheme(isDark);
-  }
-
   function toggleTheme() {
     var html = document.documentElement;
     var isDark = html.classList.contains('dark');
@@ -48,10 +24,10 @@
     setStoredTheme(isDark ? 'dark' : 'light');
   }
 
+  // Initial theme is applied by the inline script in the document head (same key and logic).
+  // This script only attaches the toggle button once the DOM is ready.
   document.addEventListener('DOMContentLoaded', function () {
     var btn = document.getElementById('theme-toggle');
     if (btn) btn.addEventListener('click', toggleTheme);
   });
-
-  initTheme();
 })();

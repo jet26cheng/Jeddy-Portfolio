@@ -80,15 +80,22 @@
     $('.heading').height( $(window).height() );
 	$('.parallaxie').parallaxie();
 	
-    // LOADER
+    // LOADER: single source of truth – fade out after load; fallback only if load never fires
+    function hidePreloader() {
+        $("#preloader").stop(true, true).fadeOut(400);
+        $(".preloader").stop(true, true).fadeOut(400);
+    }
+    var preloaderFallback = setTimeout(function() {
+        preloaderFallback = null;
+        hidePreloader();
+    }, 2500);
     $(window).on("load", function() {
-        $("#preloader").delay(500).fadeOut(400);
-        $(".preloader").delay(600).fadeOut("slow");
+        if (preloaderFallback) {
+            clearTimeout(preloaderFallback);
+            preloaderFallback = null;
+        }
+        setTimeout(hidePreloader, 500);
     });
-    // Fallback: hide preloader after 2s if load never fires (e.g. slow image)
-    setTimeout(function() {
-        $("#preloader").fadeOut(400);
-    }, 2000);
 
 	// Gallery Filter
         var Container = $('.container');
