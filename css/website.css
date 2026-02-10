@@ -471,19 +471,30 @@ html.dark .pm-section-muted h1, html.dark .pm-section-muted h2, html.dark .pm-se
     z-index: 1050;
 }
 
+/* Base navbar = light theme (dark theme scoped to html.dark below for clear specificity) */
 #mainNav {
-    background-color: #050509;
-    border-bottom: 1px solid #1e1e28;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5ea;
     transition: background-color 0.3s ease, border-color 0.3s ease;
     min-height: 56px;
 }
 
 #mainNav .navbar-brand.pm-logo {
-    color: #f5f5f7;
+    color: #111111;
 }
 
-/* Dark mode: theme toggle icon white */
 #mainNav .theme-toggle-btn {
+    color: #111111;
+}
+
+/* Dark mode: dark navbar, light logo and toggle */
+html.dark #mainNav {
+    background-color: #050509;
+    border-bottom: 1px solid #1e1e28;
+}
+
+html.dark #mainNav .navbar-brand.pm-logo,
+html.dark #mainNav .theme-toggle-btn {
     color: #f5f5f7;
 }
 
@@ -507,17 +518,27 @@ html.dark .pm-section-muted h1, html.dark .pm-section-muted h2, html.dark .pm-se
     text-transform: none;
 }
 
-/* Hire Me CTA in nav – pill button like reference */
+/* Hire Me CTA in nav – base = light theme (dark pill); dark theme overridden below */
 #mainNav .nav-link.pm-nav-cta {
     margin-left: 8px;
     padding: 8px 20px !important;
-    background-color: #f5f5f7;
-    color: #050509 !important;
+    background-color: #111111;
+    color: #ffffff !important;
     border-radius: 999px;
     font-weight: 500;
 }
 
 #mainNav .nav-link.pm-nav-cta:hover {
+    background-color: #333333;
+    color: #ffffff !important;
+}
+
+html.dark #mainNav .nav-link.pm-nav-cta {
+    background-color: #f5f5f7;
+    color: #050509 !important;
+}
+
+html.dark #mainNav .nav-link.pm-nav-cta:hover {
     background-color: #e8e8ec;
     color: #050509 !important;
 }
