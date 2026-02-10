@@ -1,0 +1,1191 @@
+/* Film Strip Portfolio - Base Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f7;
+    --text-primary: #111111;
+    --text-secondary: #5b5b68;
+    --accent: #111111;
+    --accent-hover: #333333;
+    --border: #e5e5ea;
+    --transition-speed: 0.4s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: #0a0a0a;
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    position: relative;
+}
+
+/* Theater Frame - The Room */
+.theater-frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #000000 0%, #0a0a0a 50%, #000000 100%);
+    z-index: 0;
+    overflow: hidden;
+    animation: theaterFadeIn 1s ease-in-out;
+}
+
+@keyframes theaterFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Theater Curtains - Side Elements */
+.theater-curtain {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 10%;
+    min-width: 100px;
+    background: #000000;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* Left Curtain */
+.theater-curtain-left {
+    left: 0;
+    background: linear-gradient(
+        to right,
+        #000000 0%,
+        #0a0a0a 15%,
+        #1a1a1a 30%,
+        #0a0a0a 45%,
+        #000000 60%,
+        #0a0a0a 75%,
+        #1a1a1a 90%,
+        #000000 100%
+    );
+    box-shadow: 
+        inset 20px 0 40px rgba(0, 0, 0, 0.9),
+        inset 0 0 20px rgba(0, 0, 0, 0.5),
+        10px 0 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Right Curtain */
+.theater-curtain-right {
+    right: 0;
+    background: linear-gradient(
+        to left,
+        #000000 0%,
+        #0a0a0a 15%,
+        #1a1a1a 30%,
+        #0a0a0a 45%,
+        #000000 60%,
+        #0a0a0a 75%,
+        #1a1a1a 90%,
+        #000000 100%
+    );
+    box-shadow: 
+        inset -20px 0 40px rgba(0, 0, 0, 0.9),
+        inset 0 0 20px rgba(0, 0, 0, 0.5),
+        -10px 0 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Curtain folds/pleats - vertical lines */
+.theater-curtain-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(0, 0, 0, 0.4) 8px,
+            rgba(0, 0, 0, 0.4) 10px,
+            transparent 10px,
+            transparent 18px,
+            rgba(0, 0, 0, 0.3) 18px,
+            rgba(0, 0, 0, 0.3) 20px,
+            transparent 20px,
+            transparent 28px,
+            rgba(0, 0, 0, 0.5) 28px,
+            rgba(0, 0, 0, 0.5) 30px,
+            transparent 30px,
+            transparent 38px,
+            rgba(0, 0, 0, 0.2) 38px,
+            rgba(0, 0, 0, 0.2) 40px,
+            transparent 40px
+        );
+    background-size: 40px 100%;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.theater-curtain-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(0, 0, 0, 0.4) 8px,
+            rgba(0, 0, 0, 0.4) 10px,
+            transparent 10px,
+            transparent 18px,
+            rgba(0, 0, 0, 0.3) 18px,
+            rgba(0, 0, 0, 0.3) 20px,
+            transparent 20px,
+            transparent 28px,
+            rgba(0, 0, 0, 0.5) 28px,
+            rgba(0, 0, 0, 0.5) 30px,
+            transparent 30px,
+            transparent 38px,
+            rgba(0, 0, 0, 0.2) 38px,
+            rgba(0, 0, 0, 0.2) 40px,
+            transparent 40px
+        );
+    background-size: 40px 100%;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+/* Curtain texture overlay - velvet effect */
+.theater-curtain-left::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 1px,
+            rgba(0, 0, 0, 0.15) 1px,
+            rgba(0, 0, 0, 0.15) 2px,
+            transparent 2px,
+            transparent 3px
+        );
+    background-size: 100% 3px;
+    pointer-events: none;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+}
+
+.theater-curtain-right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 1px,
+            rgba(0, 0, 0, 0.15) 1px,
+            rgba(0, 0, 0, 0.15) 2px,
+            transparent 2px,
+            transparent 3px
+        );
+    background-size: 100% 3px;
+    pointer-events: none;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+}
+
+/* Theater Screen - Content Container */
+.theater-screen {
+    position: fixed;
+    top: 5%;
+    left: 10%;
+    right: 10%;
+    bottom: 20%;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 
+        0 0 80px rgba(255, 255, 255, 0.15),
+        inset 0 0 120px rgba(255, 255, 255, 0.05),
+        0 -10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Subtle projection glow at top */
+    background: linear-gradient(to bottom, 
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.98) 3%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    /* Screen border */
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    /* Custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+    /* Entrance animation */
+    animation: screenFadeIn 1.2s ease-in-out;
+}
+
+@keyframes screenFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Custom scrollbar for webkit browsers */
+.theater-screen::-webkit-scrollbar {
+    width: 8px;
+}
+
+.theater-screen::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.theater-screen::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.theater-screen::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Screen glow effect - projection light */
+.theater-screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Theater Stage - Below Screen */
+.theater-stage {
+    position: fixed;
+    left: 10%;
+    right: 10%;
+    bottom: 20%;
+    height: 40px;
+    background: linear-gradient(to bottom, #1a1a1a 0%, #0a0a0a 100%);
+    z-index: 1;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Theater Seats - Foreground with Parallax */
+.theater-seats {
+    position: fixed;
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    height: 25%;
+    min-height: 200px;
+    background: linear-gradient(to top, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    z-index: 3;
+    pointer-events: none;
+    /* Parallax effect - moves slower than content */
+    transform: translateZ(0);
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 2% 10px;
+    gap: 8px;
+    perspective: 1000px;
+    perspective-origin: center bottom;
+}
+
+/* Seat Row */
+.seat-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 4px;
+    width: 100%;
+    position: relative;
+}
+
+/* Individual Seat */
+.seat {
+    width: 28px;
+    height: 32px;
+    position: relative;
+    transform-style: preserve-3d;
+    /* Perspective effect - seats further back are smaller */
+    transform: scale(1) translateZ(0);
+}
+
+/* Seat cushion (bottom part) */
+.seat::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: linear-gradient(
+        to bottom,
+        #3d2e1a 0%,
+        #2a1f0f 30%,
+        #1a1409 70%,
+        #0f0a05 100%
+    );
+    border-radius: 4px 4px 2px 2px;
+    box-shadow: 
+        inset 0 3px 6px rgba(255, 255, 255, 0.08),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.5),
+        0 2px 5px rgba(0, 0, 0, 0.6);
+    /* Subtle highlight on top */
+    border-top: 1px solid rgba(139, 69, 19, 0.4);
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Seat backrest (top part - curved) */
+.seat::after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: -1px;
+    right: -1px;
+    height: 20px;
+    background: linear-gradient(
+        to bottom,
+        #3d2e1a 0%,
+        #2a1f0f 20%,
+        #1a1409 50%,
+        #0f0a05 100%
+    );
+    border-radius: 10px 10px 2px 2px;
+    /* Curved top edge - more pronounced */
+    clip-path: ellipse(110% 70% at 50% 0%);
+    box-shadow: 
+        inset 0 -3px 5px rgba(0, 0, 0, 0.4),
+        inset 0 3px 4px rgba(255, 255, 255, 0.06),
+        inset 0 0 2px rgba(139, 69, 19, 0.1),
+        0 3px 5px rgba(0, 0, 0, 0.5);
+    /* Highlight on curved top */
+    border-top: 1px solid rgba(139, 69, 19, 0.3);
+    border-left: 1px solid rgba(0, 0, 0, 0.4);
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+/* Armrests between seats */
+.seat-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 14px;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 28px,
+        rgba(0, 0, 0, 0.8) 28px,
+        rgba(0, 0, 0, 0.8) 32px,
+        transparent 32px
+    );
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Add depth variation for rows (perspective) */
+.seat-row:nth-child(1) .seat {
+    transform: scale(0.85) translateY(5px);
+    opacity: 0.6;
+}
+
+.seat-row:nth-child(2) .seat {
+    transform: scale(0.9) translateY(3px);
+    opacity: 0.7;
+}
+
+.seat-row:nth-child(3) .seat {
+    transform: scale(0.95) translateY(1px);
+    opacity: 0.8;
+}
+
+.seat-row:nth-child(4) .seat {
+    transform: scale(1);
+    opacity: 0.9;
+}
+
+.seat-row:nth-child(5) .seat {
+    transform: scale(1.05) translateY(-2px);
+    opacity: 1;
+}
+
+/* Central aisle effect */
+.theater-seats::before {
+    content: '';
+    position: absolute;
+    left: 48%;
+    right: 48%;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255, 255, 255, 0.02) 50%,
+        transparent 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Subtle lighting reflection on stage */
+.theater-stage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Flicker effect on load (cinematic projector start) */
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    10% { opacity: 0.8; }
+    20% { opacity: 1; }
+    30% { opacity: 0.7; }
+    40% { opacity: 1; }
+    50% { opacity: 0.9; }
+    60% { opacity: 1; }
+    70% { opacity: 0.8; }
+    80% { opacity: 1; }
+    90% { opacity: 0.95; }
+}
+
+/* Content flicker animation */
+.content-container {
+    animation: flicker 0.5s ease-in-out 0.8s;
+}
+
+/* Main Content Container - Inside Screen */
+.content-container {
+    min-height: 100%;
+    padding: 60px 40px 40px;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+}
+
+.content-section {
+    display: none;
+    min-height: calc(100vh - 200px);
+    padding: 40px 0;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.content-section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Section */
+.hero-title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.hero-description {
+    font-size: clamp(14px, 1.5vw, 16px);
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    margin-top: 48px;
+}
+
+.btn-resume {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--accent);
+}
+
+.btn-resume:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* Section Styles */
+.section-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+}
+
+.section-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin-bottom: 24px;
+    line-height: 1.8;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.project-card {
+    background: var(--bg-secondary);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.project-metrics {
+    list-style: none;
+    margin-bottom: 24px;
+}
+
+.project-metrics li {
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.project-metrics li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+}
+
+.project-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.project-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.project-links a:hover {
+    border-bottom-color: var(--accent);
+}
+
+/* Experience Timeline */
+.experience-timeline {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.experience-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.experience-item:last-child {
+    border-bottom: none;
+}
+
+.experience-item:hover {
+    transform: translateX(8px);
+}
+
+.experience-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-years {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.experience-body h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.experience-body p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .experience-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .experience-item:hover {
+        transform: none;
+    }
+}
+
+/* Contact Section */
+.contact-info {
+    font-size: 15px;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.contact-info a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin-top: 32px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background-color: var(--bg-primary);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    padding: 12px 28px;
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.form-message {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
+}
+
+.form-message.success {
+    display: block;
+    background-color: #e8f5e9;
+    color: #1b5e20;
+    border: 1px solid #4caf50;
+}
+
+.form-message.error {
+    display: block;
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef5350;
+}
+
+/* Film Strip Navigation - Above seats */
+.film-strip {
+    position: fixed;
+    bottom: 3%;
+    left: 10%;
+    right: 10%;
+    height: 140px;
+    background: #000000 !important;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    padding: 12px 0;
+    width: auto;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Top sprocket holes - square perforations */
+.film-strip::before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-color: #000000;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            #000000 0px,
+            #000000 8px,
+            #ffffff 8px,
+            #ffffff 12px,
+            #000000 12px,
+            #000000 20px
+        );
+    background-size: 20px 6px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Bottom sprocket holes - square perforations */
+.film-strip::after {
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-color: #000000;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            #000000 0px,
+            #000000 8px,
+            #ffffff 8px,
+            #ffffff 12px,
+            #000000 12px,
+            #000000 20px
+        );
+    background-size: 20px 6px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.film-strip-container {
+    display: flex;
+    gap: 4px;
+    padding: 0 20px;
+    max-width: 1400px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    z-index: 3;
+}
+
+.film-panel {
+    flex: 1;
+    max-width: 200px;
+    height: 110px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #000000;
+    font-family: inherit;
+    font-size: 12px;
+    position: relative;
+    overflow: visible;
+    box-shadow: none;
+    margin: 0 2px;
+}
+
+/* Shine effect on hover */
+.film-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 0;
+}
+
+.film-panel:hover::before {
+    left: 100%;
+}
+
+.film-panel:hover {
+    background: #f5f5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.film-panel.active {
+    background: #ffffff;
+    border-color: #000000;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3), 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.film-panel:focus {
+    outline: 3px solid #4a9eff;
+    outline-offset: 2px;
+}
+
+.film-panel-label {
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000000;
+}
+
+/* Panel Expansion Animation */
+.content-section.expanding {
+    animation: expandPanel 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes expandPanel {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .theater-curtain {
+        width: 8%;
+        min-width: 40px;
+    }
+    
+    .theater-screen {
+        left: 5%;
+        right: 5%;
+        top: 5%;
+        bottom: 25%;
+    }
+    
+    .theater-stage {
+        left: 5%;
+        right: 5%;
+        bottom: 25%;
+    }
+    
+    .theater-seats {
+        left: 5%;
+        right: 5%;
+        height: 20%;
+        min-height: 150px;
+    }
+    
+    .seat {
+        width: 22px;
+        height: 26px;
+    }
+    
+    .seat::before {
+        height: 10px;
+    }
+    
+    .seat::after {
+        bottom: 10px;
+        height: 16px;
+    }
+    
+    .film-strip {
+        left: 5%;
+        right: 5%;
+        bottom: 5%;
+    }
+    
+    .content-container {
+        padding: 40px 20px 40px;
+    }
+    
+    .content-section {
+        padding: 30px 0;
+    }
+
+    .film-strip {
+        height: 120px;
+        padding: 8px 0;
+    }
+
+    .film-strip-container {
+        gap: 3px;
+        padding: 0 12px;
+    }
+
+    .film-panel {
+        height: 90px;
+        max-width: none;
+        flex: 1;
+        margin: 0 1px;
+    }
+
+    .film-panel-label {
+        font-size: 10px;
+        letter-spacing: 0.5px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .theater-curtain {
+        width: 5%;
+        min-width: 20px;
+    }
+    
+    .theater-screen {
+        left: 3%;
+        right: 3%;
+        top: 3%;
+        bottom: 30%;
+    }
+    
+    .theater-stage {
+        left: 3%;
+        right: 3%;
+        bottom: 30%;
+    }
+    
+    .theater-seats {
+        left: 3%;
+        right: 3%;
+        height: 18%;
+        min-height: 120px;
+        padding: 0 1% 8px;
+        gap: 6px;
+    }
+    
+    .seat-row {
+        gap: 3px;
+    }
+    
+    .seat {
+        width: 18px;
+        height: 22px;
+    }
+    
+    .seat::before {
+        height: 8px;
+    }
+    
+    .seat::after {
+        bottom: 8px;
+        height: 14px;
+    }
+    
+    .seat-row::before {
+        height: 10px;
+        background: repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 18px,
+            rgba(0, 0, 0, 0.6) 18px,
+            rgba(0, 0, 0, 0.6) 21px,
+            transparent 21px
+        );
+    }
+    
+    .film-strip {
+        left: 3%;
+        right: 3%;
+        bottom: 4%;
+        height: 110px;
+        padding: 6px 0;
+    }
+
+    .film-panel {
+        height: 85px;
+    }
+
+    .film-panel-label {
+        font-size: 9px;
+        letter-spacing: 0.5px;
+    }
+    
+    .content-container {
+        padding: 30px 15px 30px;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

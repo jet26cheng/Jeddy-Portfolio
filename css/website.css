@@ -427,6 +427,11 @@ html.dark .pm-section-muted h1, html.dark .pm-section-muted h2, html.dark .pm-se
     border-radius: 18px;
 }
 
+.pm-contact-direct {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
 /* Metrics section */
 
 .pm-metrics-section {
