@@ -119,7 +119,8 @@
             targetSection.classList.add('expanding');
             setTimeout(() => {
                 targetSection.classList.add('active');
-                targetSection.focus();
+                // Focus on first focusable element in section for keyboard navigation
+                focusSection(targetSection);
                 // Announce to screen readers
                 announceSectionChange(sectionId);
             }, 50);
@@ -130,12 +131,43 @@
             }, 600);
         } else {
             targetSection.classList.add('active');
-            targetSection.focus();
+            // Focus on first focusable element in section for keyboard navigation
+            focusSection(targetSection);
             state.isTransitioning = false;
         }
 
         // Scroll to top smoothly
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Focus section for keyboard navigation
+    function focusSection(section) {
+        // Try to focus on the first heading in the section (most semantic)
+        const firstHeading = section.querySelector('h1, h2, h3, h4, h5, h6');
+        if (firstHeading) {
+            // Make heading focusable if it isn't already
+            if (!firstHeading.hasAttribute('tabindex')) {
+                firstHeading.setAttribute('tabindex', '-1');
+            }
+            firstHeading.focus();
+            return;
+        }
+        
+        // Fallback: focus on section-inner div
+        const sectionInner = section.querySelector('.section-inner');
+        if (sectionInner) {
+            if (!sectionInner.hasAttribute('tabindex')) {
+                sectionInner.setAttribute('tabindex', '-1');
+            }
+            sectionInner.focus();
+            return;
+        }
+        
+        // Last resort: focus on section itself (requires tabindex)
+        if (!section.hasAttribute('tabindex')) {
+            section.setAttribute('tabindex', '-1');
+        }
+        section.focus();
     }
 
     // Screen reader announcement
@@ -182,10 +214,13 @@
         const body = encodeURIComponent(`From: ${name} (${email})\n\n${message}`);
         const mailtoLink = `mailto:jeddycheng@gmail.com?subject=${subject}&body=${body}`;
         
-        window.location.href = mailtoLink;
+        // Show success message first
+        showFormMessage('success', 'Thank you! Your email client should open shortly. If not, please email jeddycheng@gmail.com directly.');
         
-        // Show success message
-        showFormMessage('success', 'Thank you! Your email client should open. If not, please email jeddycheng@gmail.com directly.');
+        // Open mailto link after a short delay so user sees the success message
+        setTimeout(() => {
+            window.location.href = mailtoLink;
+        }, 300);
         
         // Reset form after a delay
         setTimeout(() => {
